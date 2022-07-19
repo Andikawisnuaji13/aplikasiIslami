@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {View, Text, StatusBar, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-class About extends Component {
+class Setting extends Component {
     constructor(props) {
         super(props)
         this.state = {}
@@ -19,12 +19,12 @@ class About extends Component {
                     flexDirection:'row'}}>
                 <TouchableOpacity 
                 style={{marginLeft: 20}} 
-                onPress={() => {this.props.navigation.navigate('HomeNav')}}>
-                    <Icon
+                onPress={() => {}}>
+                    {/* <Icon
                     name='chevron-left'
                     size={20}
                     color='#ffffff'
-                    />
+                    /> */}
                 </TouchableOpacity>
                 <View style={{flex: 1}}>
                 <Text style={{
@@ -32,7 +32,7 @@ class About extends Component {
                     textAlign:'center', 
                     fontWeight:'bold', 
                     fontSize: 18,
-                    marginRight: 20}}>About</Text>
+                    marginRight: 20}}>Setting</Text>
                 </View>
                 </View>
             </View>
@@ -40,4 +40,4 @@ class About extends Component {
     }
 }
 
-export default About;
+export default Setting;
