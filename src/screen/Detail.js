@@ -26,7 +26,7 @@ class Detail extends Component {
 
     render(){
         return(
-            <View style={{flex: 1, backgroundColor:'white'}}>
+            <View style={{flex: 1}}>
             <StatusBar backgroundColor={'#00796b'}/>
                 <View style={{
                     backgroundColor:'#00897b', 

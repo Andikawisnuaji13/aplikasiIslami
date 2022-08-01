@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { Component, useEffect, useState } from 'react';
+import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { EventRegister } from 'react-native-event-listeners'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Home from './src/screen/Home';
 import Detail from './src/screen/Detail';
@@ -12,6 +13,8 @@ import JadwalShalat from './src/screen/JadwalShalat';
 import Doa from './src/screen/Doa';
 import DetailDoa from './src/screen/DetailDoa';
 import Tasbih from './src/screen/Tasbih';
+import Theme from './src/screen/theme';
+import themeContext from './src/screen/themeContext';
 
 const Stack = createNativeStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -55,8 +58,23 @@ function SettingNavigator ()
 
 export default function App ()
 {
+  const [mode, setMode] = useState(true);
+
+  useEffect(() => {
+    let eventListener = EventRegister.addEventListener(
+      "changeTheme",
+      (data) => {
+        setMode(data);
+        console.log(data)
+      }
+    );
+    return() => {
+      EventRegister.removeEventListener(eventListener);
+    };
+  })
   return (
-    <NavigationContainer>
+    <themeContext.Provider value={mode === false ? Theme.dark : Theme.light}>
+    <NavigationContainer theme={mode === false ? DarkTheme : DefaultTheme}>
       <Tab.Navigator
         screenOptions={( { route } ) => ( {
           tabBarIcon: ( { focused, color, size } ) =>
@@ -95,5 +113,6 @@ export default function App ()
           component={SettingNavigator} />
       </Tab.Navigator>
     </NavigationContainer>
+    </themeContext.Provider>
   );
 }

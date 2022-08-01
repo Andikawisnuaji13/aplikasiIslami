@@ -1,6 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useContext } from 'react';
 import { View, Text, StatusBar, FlatList, TouchableOpacity, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import Theme from './theme';
+import themeContext from './themeContext';
 
 class Home extends Component
 {
@@ -12,6 +14,7 @@ class Home extends Component
             pencarian: ''
         };
     }
+    
     componentDidMount ()
     {
         this.getSurat()
@@ -37,12 +40,12 @@ class Home extends Component
     render ()
     {
         return (
-            <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={{ flex: 1}}>
                 <StatusBar backgroundColor={'#00796b'} />
                 <View style={{
                     backgroundColor: '#00897b',
-                    paddingVertical: 15,
                     elevation: 50,
+                    paddingVertical: 15,
                     flexDirection: 'row',
                     paddingHorizontal: 10,
                     alignItems: 'center'
@@ -97,7 +100,7 @@ class Home extends Component
                             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <Text style={{
-                                        color: 'black'
+                                        color: "black"
                                     }}>{item.nomor}.</Text>
                                     <Text style={{
                                         color: 'black', marginLeft: 5

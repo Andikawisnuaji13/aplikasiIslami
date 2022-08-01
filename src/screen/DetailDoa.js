@@ -10,7 +10,7 @@ class DetailDoa extends Component {
     }
     render () {
         return (
-            <View>
+            <View style={{backgroundColor:'white', flex: 1}}>
                 <View style={{
                     backgroundColor: '#00897b', paddingVertical: 15, elevation: 5,
                     flexDirection: 'row',

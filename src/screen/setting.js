@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import {View, Text, StatusBar, TouchableOpacity} from 'react-native';
+import React, { Component, useState, useContext } from 'react';
+import {View, Text, StatusBar, TouchableOpacity, Switch} from 'react-native';
+import { EventRegister } from 'react-native-event-listeners'
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import themeContext from './themeContext';
 
-class Setting extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {}
-    }
+const Setting = () => {
+    const theme = useContext(themeContext);
+    const [mode, setMode] = useState(false);
 
-    render() {
-        return(
-            <View style={{flex: 1, backgroundColor:'grey'}}>
+         return(
+            <View style={{flex: 1, backgroundColor:theme.background}}>
             <StatusBar backgroundColor={'#00796b'}/>
                 <View style={{
                     backgroundColor:'#00897b', 
@@ -35,9 +34,23 @@ class Setting extends Component {
                     marginRight: 20}}>Setting</Text>
                 </View>
                 </View>
+                <View>
+                    <Text style={{marginHorizontal: 10, color: theme.color, marginTop: 10, fontWeight: 'bold', fontSize: 20}}>
+                        Umum
+                    </Text>
+                    <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal: 10, paddingVertical: 20, paddingHorizontal: 8, borderBottomWidth: 1, borderBottomColor: theme.color, alignItems:'center' }}>
+                    <Text style={{color:theme.color, fontSize: 15}}>
+                        Mode Gelap/Terang
+                    </Text>
+                    <Switch 
+                    value={mode} 
+                    onValueChange={
+                        (value) => setMode((value), 
+                        EventRegister.emit("changeTheme", mode))}/>
+                    </View>
+                </View>
             </View>
         )
     }
-}
 
 export default Setting;
